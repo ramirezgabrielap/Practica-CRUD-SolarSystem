@@ -1,9 +1,7 @@
 package com.example.restservice;
 
-import java.util.ArrayList;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @RestController
@@ -42,29 +39,17 @@ public class PlanetController {
         return this.planetRepository.save(planet);
     }
     
-    //@PostMapping
-    //public Planet savePlanet(@RequestBody Planet planet){
-    //    return this.planetService.savePlanet(planet);
-    //}
-    
-   
-       
-    //@PutMapping(path = "/{id}")
-    //public Planet updatePlanetById(@RequestBody Planet request, @PathVariable Long id){
-    //    return this.planetService.updateById(request, id);
-    //}
+    @PutMapping("/{id}")
+    public Planet edit(@RequestBody Planet planet, @PathVariable Integer id){
+        planet.setId(id);
+        return this.planetRepository.save(planet);
+    }
     
     
-    //@DeleteMapping(path = "/{id}")
-    //public String deleteById(@PathVariable("id") Long id){
-    //    boolean ok = this.planetService.deletePlanet(id);
-    //    
-    //   if(ok){
-    //        return "Planeta ID " + id + " Eliminado correctamente";
-    //    } else {
-    //        return "Error al Eliminar Planeta ID " + id;
-    //    }
-    //}
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id){
+        this.planetRepository.deleteById(id);
+    }
     
-    
+ 
 }
