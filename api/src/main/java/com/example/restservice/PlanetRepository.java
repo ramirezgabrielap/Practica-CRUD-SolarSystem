@@ -1,8 +1,8 @@
 package com.example.restservice;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface PlanetRepository extends CrudRepository<Planet, Integer> {
+public interface PlanetRepository extends JpaRepository<Planet, Integer> {
 
 }
