@@ -15,8 +15,9 @@ class Planet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String name;
+    private int radio;
+    private int mass;
 
     public Integer getId() {
         return id;
@@ -33,7 +34,20 @@ class Planet {
     public void setName(String name) {
         this.name = name;
     }
-    
-    
-    
+
+    public int getRadio() {
+        return radio;
+    }
+
+    public void setRadio(int radio) {
+        this.radio = radio;
+    }
+
+    public int getMass() {
+        return mass;
+    }
+
+    public void setMass(int masa) {
+        this.mass = masa;
+    }   
 }

@@ -53,4 +53,8 @@ public class PlanetController {
     }
     
  
+    @GetMapping("/count")
+    public Long countPlanets(){
+        return planetRepository.count();
+    }
 }
