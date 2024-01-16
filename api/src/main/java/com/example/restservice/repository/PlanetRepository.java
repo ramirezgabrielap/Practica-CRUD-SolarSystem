@@ -1,5 +1,6 @@
-package com.example.restservice;
+package com.example.restservice.repository;
 
+import com.example.restservice.model.Planet;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

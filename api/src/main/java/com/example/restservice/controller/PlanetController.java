@@ -1,5 +1,7 @@
-package com.example.restservice;
+package com.example.restservice.controller;
 
+import com.example.restservice.model.Planet;
+import com.example.restservice.repository.PlanetRepository;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;

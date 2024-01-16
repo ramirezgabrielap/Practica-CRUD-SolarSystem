@@ -13,7 +13,6 @@ public class RestServiceApplication {
 		SpringApplication.run(RestServiceApplication.class, args);
 	}
         
-        //https://spring.io/guides/gs/rest-service-cors/
         @Bean
 	public WebMvcConfigurer corsConfigurer() {
             return new WebMvcConfigurer() {

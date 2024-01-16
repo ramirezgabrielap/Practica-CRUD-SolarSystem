@@ -1,5 +1,5 @@
 
-package com.example.restservice;
+package com.example.restservice.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="planets")
-class Planet {
+public class Planet {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
