@@ -1,35 +1,32 @@
-//index.js
 
-// Mostrar el conteo de planetas registrados en la BBDD
 document.addEventListener("DOMContentLoaded", async function () {
     console.log("admin.js ready");
 
-    // Obtener la cantidad total de registros desde el backend
+    // Obtener la cantidad
     const totalCount = await fetch("http://127.0.0.1:8000/api/planets/count")
         .then(response => response.json())
         .catch(function (error) {
             console.log(error);
         });
 
-    // Mostrar la cantidad total en el index
+    // Mostramos
     document.getElementById("countPlanets").innerText = `${totalCount}`;
 
 
 
 
-    // Pintar los datos de cada registro en su respectiva card
 
-    // Obtener la lista de planetas desde el backend
+
+    // Pintar Home
     const planets = await fetch("http://127.0.0.1:8000/api/planets")
         .then(response => response.json())
         .catch(function (error) {
             console.log(error);
         });
 
-    // Obtener el contenedor donde se mostrarán las tarjetas
+    // Pinta Cards
     const cardContainer = document.getElementById("card-container");
 
-    // Crear una tarjeta por cada planeta
     planets.forEach(planet => {
         console.log(planet);
 

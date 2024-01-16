@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 .then(result => {
                     console.log(result);
                     alert("Eliminación exitosa");
-                    // Recargar la página después de la eliminación
+                    // Recarga pag
                     location.reload();
                 })
                 .catch(error => console.log('error', error));

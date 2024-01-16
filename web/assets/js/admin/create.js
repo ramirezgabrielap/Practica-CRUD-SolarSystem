@@ -1,6 +1,6 @@
 console.log("admin/create.js");
 
-//contenido cargado en el DOM
+//carga DOM
 document.addEventListener("DOMContentLoaded", async function () {
     console.log("admin.js ready")
 
