@@ -34,6 +34,24 @@ document.addEventListener("DOMContentLoaded", async function () {
         tbody.innerHTML += tr;
     });
 
+    let page = 1;
+    const pageSize = 10;
+
+    function changePage(page) {
+        currentPage = page;
+        fetchData();
+    }
+
+    async function fetchData() {
+        const planets = await fetch(`http://127.0.0.1:8000/api/planets?page=${page}&size=${pageSize}`)
+            .then(response => response.json())
+            .catch(function (error) {
+                console.log(error);
+            });
+        renderData(planets);
+    }
+
+
     window.deletePlanet = function (planetId) {
         const confirmation = confirm("¿Estás seguro de eliminar este registro?");
         if (confirmation) {
