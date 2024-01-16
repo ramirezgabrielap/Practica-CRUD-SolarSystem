@@ -2,9 +2,13 @@ package com.example.restservice.controller;
 
 import com.example.restservice.model.Planet;
 import com.example.restservice.repository.PlanetRepository;
+import jakarta.validation.Valid;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/planets")
 public class PlanetController {
-    @Autowired 
     
+    @Autowired 
     private final PlanetRepository planetRepository;
     
     public PlanetController(PlanetRepository planetRepository) {
@@ -27,10 +31,10 @@ public class PlanetController {
     }
 
     @GetMapping()
-    public Iterable<Planet> getAll() {
+    public Iterable<Planet> getAll(@PageableDefault(page = 0, size = 10) Pageable pageable) {
+        //final Pageable pageable = PageRequest.of(0, 10);
         return planetRepository.findAll(Sort.by("id").ascending());
     }
-    
     
     @GetMapping("/{id}")
     public Optional<Planet> get(@PathVariable Integer id) {
@@ -38,7 +42,7 @@ public class PlanetController {
     }
     
     @PostMapping()
-    public Planet save(@RequestBody Planet planet){
+    public Planet save(@RequestBody @Valid Planet planet){
         return this.planetRepository.save(planet);
     }
     
@@ -54,7 +58,6 @@ public class PlanetController {
         this.planetRepository.deleteById(id);
     }
     
- 
     @GetMapping("/count")
     public Long countPlanets(){
         return planetRepository.count();

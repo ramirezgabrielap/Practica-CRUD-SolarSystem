@@ -6,6 +6,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import java.util.List;
 
 
 @Entity
@@ -15,8 +20,18 @@ public class Planet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    
+    @NotNull(message="no nulo!")
+    @NotBlank(message="no en blanco!")
+    @Size(min=2, max=200)
     private String name;
+    
+    @NotNull(message="no nulo!")
+    @Min(1)
     private int radio;
+    
+    @NotNull(message="no nulo!")
+    @Min(1)
     private int mass;
 
     public Integer getId() {
@@ -50,4 +65,8 @@ public class Planet {
     public void setMass(int masa) {
         this.mass = masa;
     }   
+
+    public void addAttribute(String planets, List<Planet> content) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
