@@ -26,50 +26,58 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Rellena formulario
     populateForm(recordData);
 
+
     // Agregar evento de envío formulario para actualización
     document.getElementById("formE").addEventListener('submit', update);
 
     function update(evt) {
         evt.preventDefault();
+        console.log('update', evt);
 
-        let myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+        //clear bostrap error
+        document.getElementById("name").classList.remove('is-invalid');
+        document.getElementById("radio").classList.remove('is-invalid');
+        document.getElementById("mass").classList.remove('is-invalid');
 
-        // Obtener valores actualizados
-        let id = document.getElementById("id").value;
-        let name = document.getElementById("name").value;
-        let radio = document.getElementById("radio").value;
-        let mass = document.getElementById("mass").value;
 
-        let updatedRaw = JSON.stringify({
-            id: id,
-            name: name,
-            radio: radio,
-            mass: mass
-        });
-
-        let requestOptions = {
+        fetch(`http://localhost:8000/api/planets/${recordId}`, {
             method: 'PUT',
-            headers: myHeaders,
-            body: updatedRaw,
-            redirect: 'follow'
-        };
-
-        // Solicitud de actualización al servidor
-        fetch(`http://localhost:8000/api/planets/${recordId}`, requestOptions)
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept-Language': 'en_US'
+            },
+            body: JSON.stringify({
+                id: document.getElementById("id").value,
+                name: document.getElementById("name").value,
+                radio: document.getElementById("radio").value,
+                mass: document.getElementById("mass").value
+            })
+        })
             .then(response => {
-                if (!response.ok) {
+                if (!response.ok && response.status != 400) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-                return response.text();
+                return response.json();
             })
             .then(result => {
-                console.log(result);
-                alert("Edición Exitosa");
-                // Redirige a página de visualización después de actualización
-                window.location.href = "/admin/index.html";
+                console.log({ result });
+                if (result.status == 400) {
+                    toastr["error"]("Input Error!")
+                    result.errors.forEach(error => {
+                        console.log(error);
+                        console.log(error.field, error.defaultMessage);
+                        document.getElementById(error.field).classList.add('is-invalid');
+                        document.getElementById(error.field + '_error').innerHTML = error.defaultMessage;
+                    });
+                    return false;
+                }
+
+                // window.location.href = "/admin/index.html";
             })
-            .catch(error => console.log('error', error));
+            .catch(error => {
+                console.log({ error })
+                toastr["error"]("Error!")
+            });
     }
 
     // Obtener datos del registro actual
@@ -83,6 +91,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             return data;
         } catch (error) {
             console.error('Error fetching record data:', error);
+            toastr["error"]("Error fetching record data!")
             return null;
         }
     }

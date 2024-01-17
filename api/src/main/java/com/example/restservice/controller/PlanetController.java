@@ -5,7 +5,6 @@ import com.example.restservice.repository.PlanetRepository;
 import jakarta.validation.Valid;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -32,7 +31,6 @@ public class PlanetController {
 
     @GetMapping()
     public Iterable<Planet> getAll(@PageableDefault(page = 0, size = 10) Pageable pageable) {
-        //final Pageable pageable = PageRequest.of(0, 10);
         return planetRepository.findAll(Sort.by("id").ascending());
     }
     
@@ -42,12 +40,12 @@ public class PlanetController {
     }
     
     @PostMapping()
-    public Planet save(@RequestBody @Valid Planet planet){
+    public Planet save(@Valid @RequestBody Planet planet){
         return this.planetRepository.save(planet);
     }
     
     @PutMapping("/{id}")
-    public Planet edit(@RequestBody Planet planet, @PathVariable Integer id){
+    public Planet edit(@Valid @RequestBody Planet planet, @PathVariable Integer id){
         planet.setId(id);
         return this.planetRepository.save(planet);
     }

@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         .then(response => response.json())
         .catch(function (error) {
             console.log(error);
+            toastr["error"]("el universo no existe")
         });
 
     // Pinta Cards
