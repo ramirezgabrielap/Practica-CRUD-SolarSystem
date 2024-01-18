@@ -1,21 +1,21 @@
 console.log("admin/edit.js");
 
-//contenido cargado en DOM
+//load content into the DOM
 document.addEventListener("DOMContentLoaded", async function () {
     console.log("admin/edit.js ready");
 
 
-    // Obtener el ID a editar desde URL
+    // ID -> URL
     const urlParams = new URLSearchParams(window.location.search);
     const recordId = urlParams.get('id');
 
-    // Verifica ID válido
+    // ID valid
     if (!recordId) {
         console.error("No se proporcionó un ID de registro válido.");
         return;
     }
 
-    // Cargar datos para edición
+    // Load data for editing
     const recordData = await fetchRecordData(recordId);
 
     if (!recordData) {
@@ -23,18 +23,18 @@ document.addEventListener("DOMContentLoaded", async function () {
         return;
     }
 
-    // Rellena formulario
+    // form
     populateForm(recordData);
 
 
-    // Agregar evento de envío formulario para actualización
+    // Add form submit event for update
     document.getElementById("formE").addEventListener('submit', update);
 
     function update(evt) {
         evt.preventDefault();
         console.log('update', evt);
 
-        //clear bostrap error
+        //clear boostrap error
         document.getElementById("name").classList.remove('is-invalid');
         document.getElementById("radio").classList.remove('is-invalid');
         document.getElementById("mass").classList.remove('is-invalid');
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             });
     }
 
-    // Obtener datos del registro actual
+    // Get data from current record
     async function fetchRecordData(id) {
         try {
             const response = await fetch(`http://localhost:8000/api/planets/${id}`);

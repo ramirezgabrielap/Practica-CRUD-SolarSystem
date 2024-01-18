@@ -2,22 +2,18 @@
 document.addEventListener("DOMContentLoaded", async function () {
     console.log("admin.js ready");
 
-    // Obtener la cantidad
+    // get the amount
     const totalCount = await fetch("http://127.0.0.1:8000/api/planets/count")
         .then(response => response.json())
         .catch(function (error) {
             console.log(error);
         });
 
-    // Mostramos
+    // show
     document.getElementById("countPlanets").innerText = `${totalCount}`;
 
 
-
-
-
-
-    // Pintar Home
+    // paint the home
     const planets = await fetch("http://127.0.0.1:8000/api/planets")
         .then(response => response.json())
         .catch(function (error) {
@@ -25,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             toastr["error"]("el universo no existe")
         });
 
-    // Pinta Cards
+    // paint Cards
     const cardContainer = document.getElementById("card-container");
 
     planets.forEach(planet => {

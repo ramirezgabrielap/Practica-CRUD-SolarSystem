@@ -1,6 +1,6 @@
 console.log("admin/create.js");
 
-//carga DOM
+// DOM
 document.addEventListener("DOMContentLoaded", async function () {
     console.log("admin.js ready")
 
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         evt.preventDefault();
         console.log('create', evt);
 
-        //clear bostrap error
+        //clear boostrap error
         document.getElementById("name").classList.remove('is-invalid');
         document.getElementById("radio").classList.remove('is-invalid');
         document.getElementById("mass").classList.remove('is-invalid');

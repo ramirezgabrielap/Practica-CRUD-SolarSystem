@@ -1,6 +1,6 @@
 console.log("admin/index.js");
 
-//contenido cargado en el DOM
+//load content into the DOM
 document.addEventListener("DOMContentLoaded", async function () {
     console.log("admin.js ready")
 
@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
         planets.forEach(planet => {
-            //console.log(planet);
             let tr = '<tr>';
             tr += '<th scope="row">' + planet.id + '</th>';
             tr += '<td>' + planet.name + '</td>';
@@ -39,29 +38,10 @@ document.addEventListener("DOMContentLoaded", async function () {
             tr += '</button>';
             tr += '</td>';
             tr += '</tr>';
-            //console.log(tr);
             tbody.innerHTML += tr;
         });
     }
 
-    /*let page = 1;
-    const pageSize = 10;
-
-    function changePage(page) {
-        currentPage = page;
-        fetchData();
-    }
-
-    async function fetchData() {
-        const planets = await fetch(`http://127.0.0.1:8000/api/planets?page=${page}&size=${pageSize}`)
-            .then(response => response.json())
-            .catch(function (error) {
-                console.log(error);
-                toastr["error"]("el universo no existe")
-            });
-        renderData(planets);
-    }
-    */
 
     window.deletePlanet = function (planetId) {
         const confirmation = confirm("¿Estás seguro de eliminar este registro?");
@@ -73,8 +53,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 .then(result => {
                     console.log(result);
                     toastr["success"]("Planet was removed!");
-                    // Recarga pag
-                    //location.reload();
+                    // reload page
                     loadPlanets();
                 })
                 .catch(error => {
