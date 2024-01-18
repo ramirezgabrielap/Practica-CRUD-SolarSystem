@@ -21,16 +21,16 @@ public class Planet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    @NotNull()
-    @NotBlank()
-    @Size(min=2, max=200)
+    @NotNull
+    @NotBlank
+    @Size(min = 2, max = 200)
     private String name;
     
-    @NotNull()
+    @NotNull
     @Min(1)
     private int radio;
     
-    @NotNull()
+    @NotNull
     @Min(1)
     private int mass;
 

@@ -44,43 +44,114 @@ public class PlanetTest {
 
         assertThat(validator.validate(planet)).isEmpty();
     }
-   
-    /*
+    
+    // tests for Name
     
     @Test
-    public void validatePlanetWithNameTooShort() {
+    public void validatePlanetWithNameNotNull() {
         Planet planet = new Planet();
-        planet.setName("E"); // Name is too short
+        planet.setRadio(6371);
+        planet.setMass(5);
+
+        assertThat(validator.validate(planet))
+            .hasSize(2)
+            .extracting("message")
+            .contains("no debe ser nulo"); 
+    }
+   
+    @Test
+    public void validatePlanetWithNameNotBlank() {
+        Planet planet = new Planet();
+        planet.setName("");
+        planet.setRadio(6371);
+        planet.setMass(5);
+
+        assertThat(validator.validate(planet))
+            .hasSize(2)
+            .extracting("message")
+            .contains("no debe estar vacío"); 
+    }
+    
+    @Test
+    public void validatePlanetWithNameMin() {
+        Planet planet = new Planet();
+        planet.setName("E"); 
+        planet.setRadio(123);
+        planet.setMass(234);
+        
+        assertThat(validator.validate(planet))
+            .hasSize(1)
+            .extracting("message")
+            .contains("el tamaño debe estar entre 2 y 200"); 
+    }
+    
+    @Test
+    public void validatePlanetWithNameMax() {
+        String name = "a".repeat(201);
+        Planet planet = new Planet();
+        planet.setName(name); 
+        planet.setRadio(123);
+        planet.setMass(234);
+        
+        assertThat(validator.validate(planet))
+            .hasSize(1)
+            .extracting("message")
+            .contains("el tamaño debe estar entre 2 y 200"); 
+    }    
+   
+    // tests for Radio
+    
+    @Test
+    public void validatePlanetWithRadioNotNull() {
+        Planet planet = new Planet();
+        planet.setName("lalito1"); 
+        planet.setMass(5); 
 
         assertThat(validator.validate(planet))
             .hasSize(1)
             .extracting("message")
-            .contains("not blank!", "not null!", "size must be between 2 and 200");
+            .contains("debe ser mayor que o igual a 1");
     }
     
     @Test
     public void validatePlanetWithNegativeRadio() {
         Planet planet = new Planet();
-        planet.setRadio(-1); // Radio is negative
+        planet.setName("lalito99"); 
+        planet.setRadio(-1);
+        planet.setMass(3);
 
         assertThat(validator.validate(planet))
             .hasSize(1)
             .extracting("message")
-            .contains("not null!", "must be greater than or equal to 1");
+            .contains("debe ser mayor que o igual a 1");
+    }
+    
+    // tests for Mass
+    
+    @Test
+    public void validatePlanetWithMassNotNull() {
+        Planet planet = new Planet();
+        planet.setName("Sitro"); 
+        planet.setRadio(888); 
+
+        assertThat(validator.validate(planet))
+            .hasSize(1)
+            .extracting("message")
+            .contains("debe ser mayor que o igual a 1");
     }
     
     @Test
     public void validatePlanetWithNegativeMass() {
         Planet planet = new Planet();
-        planet.setMass(-1); // Mass is negative
+        planet.setName("Aurok3"); 
+        planet.setRadio(123456);
+        planet.setMass(-1); 
 
         assertThat(validator.validate(planet))
             .hasSize(1)
             .extracting("message")
-            .contains("not null!", "must be greater than or equal to 1");
+            .contains("debe ser mayor que o igual a 1");
     }
-    
-    */
-     
+        
 }
 
