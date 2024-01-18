@@ -15,6 +15,7 @@
 	<description>Demo project for ACL with Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
+                <jacoco.version>0.8.7</jacoco.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -100,9 +101,34 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+                        <plugin>
+                            <groupId>org.jacoco</groupId>
+                            <artifactId>jacoco-maven-plugin</artifactId>
+                            <configuration>
+                                <excludes>
+                                    <exclude>com/example/restservice/RestServiceApplication.class</exclude>
+                                    <exclude>com/example/restservice/repository/PlanetRepository.class</exclude>
+                                </excludes> 
+                            </configuration>
+                            <version>0.8.7</version>
+                            <executions>
+                                <execution>
+                                    <goals>
+                                        <goal>prepare-agent</goal>
+                                    </goals>
+                                </execution>
+                                <execution>
+                                    <id>report</id>
+                                    <phase>prepare-package</phase>
+                                    <goals>
+                                        <goal>report</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                    </plugin>
 		</plugins>
 	</build>
 
