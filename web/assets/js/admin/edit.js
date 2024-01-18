@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     return false;
                 }
 
-                // window.location.href = "/admin/index.html";
+                window.location.href = "/admin/index.html";
             })
             .catch(error => {
                 console.log({ error })
