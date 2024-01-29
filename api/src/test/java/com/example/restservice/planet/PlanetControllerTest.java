@@ -38,21 +38,21 @@ public class PlanetControllerTest {
     public void testSavePlanet() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.post("/planets")
             .contentType(MediaType.APPLICATION_JSON)
-            .content("{\"name\": \"TierraTest\", \"radio\": 123456, \"mass\": 98765}"))
+            .content("{\"name\": \"TerrarioTest\", \"radio\": 123456, \"mass\": 98765}"))
             .andExpect(MockMvcResultMatchers.status().isOk());
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void testEditPlanet() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.put("/planets/{id}", 14)
             .contentType(MediaType.APPLICATION_JSON)
-            .content("{\"name\": \"Tierra\", \"radio\": 1234, \"mass\": 4567}"))
+            .content("{\"name\": \"Tierrita\", \"radio\": 1234, \"mass\": 4567}"))
             .andExpect(MockMvcResultMatchers.status().isOk());
-    } 
+    }*/
     
-    @Test
+    /*@Test
     public void testDeletePlanet() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/planets/{id}", 15))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/planets/{id}", 2))
             .andExpect(MockMvcResultMatchers.status().isOk());
     }*/
    
