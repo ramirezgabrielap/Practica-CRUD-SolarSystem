@@ -14,7 +14,7 @@ Se incluyen pruebas unitarias a las API.
 - `Funcionalidad 3`: Editar y/o Eliminar Planetas
 - `Funcionalidad 4`: Registrar Planetas
 
-## :white_check_mark: Tecnología utilizada
+## :white_check_mark: Tecnologías utilizadas
 
 * **Java 8**
 * **Spring Boot 3.2.1**
